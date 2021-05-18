@@ -1,7 +1,7 @@
 let _singleton = Symbol();
 
-// const localURL = 'http://localhost:8080';
-const localURL = 'http://18.116.46.95';
+const localURL = 'http://localhost:8080';
+// const localURL = 'http://18.116.46.95';
 // const localURL = 'https://wbdv-final-project-java-server.herokuapp.com';
 const addDishToShoppingCartURL = '/api/shoppingCart/shoppingCartId/dish/dishId';
 const findShoppingCartItemsURL = '/api/shoppingCart/shoppingCartId';

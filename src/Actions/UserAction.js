@@ -15,7 +15,12 @@ export const findUser = (dispatch) => {
                              currentUser: user
                          });
             }
-        });
+        })
+        .catch((error)=>{
+                dispatch({
+                    type: 'ANONYMOUS_USER'
+                });
+            });
 };
 
 export const logOut = (dispatch) => {
