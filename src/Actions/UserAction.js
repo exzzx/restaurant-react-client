@@ -4,6 +4,10 @@ const userService = UserService.instance;
 
 export const findUser = (dispatch) => {
     let give_user = sessionStorage.getItem("currentUser");
+    if (give_user === null) {
+        give_user = {};
+    }
+    console.log("give_user: ",give_user);
     userService.findCurrentUser(give_user)
         .then((user) => {
             console.log("user",user);
