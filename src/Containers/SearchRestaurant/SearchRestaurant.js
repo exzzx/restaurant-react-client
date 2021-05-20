@@ -17,7 +17,15 @@ class SearchRestaurant extends Component {
     }
 
     componentDidMount() {
-        this.props.findUser();
+        // if (this.props.history.location.state.currentUser !== null) {
+        //     this.props.currentUser = this.props.history.location.state.currentUser;
+        // }
+        // if (this.props.currentUser === null
+        //     || Object.keys(this.props.currentUser).length === 0) {
+        console.log("this and session:", this, sessionStorage, sessionStorage["currentUser"], this.state);
+            this.props.findUser(sessionStorage.getItem("currentUser"));
+        // }
+
     }
 
     componentDidUpdate() {
@@ -111,7 +119,7 @@ const stateToPropertyMapper = (state) => {
 const dispatcherToPropertyMapper = (dispatch) => {
 
     return {
-        findUser: () => actions.findUser(dispatch),
+        findUser: (user) => actions.findUser(dispatch, user),
         logOut: () => actions.logOut(dispatch)
     }
 };

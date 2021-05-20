@@ -26,12 +26,15 @@ class LogIn extends Component {
             username: this.state.username,
             password: this.state.password
         };
-
         this.userService.userLogin(user).then((response) => {
+            // sessionStorage.setItem("currentUser", JSON.stringify(user));
             if (response === null) {
                 alert("Please check your username or password again.");
             } else {
-                this.props.history.push('/');
+
+                this.props.history.push({pathname:'/', state:{currentUser: response}});
+                this.props.location.state={currentUser: response};
+                // console.log("props before mainpage", this.props)
             }
         });
 

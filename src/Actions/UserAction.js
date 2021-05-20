@@ -2,12 +2,14 @@ import UserService from '../Services/UserServiceClient';
 
 const userService = UserService.instance;
 
-export const findUser = (dispatch) => {
-    userService.findCurrentUser()
+export const findUser = (dispatch, give_user) => {
+    userService.findCurrentUser(give_user)
         .then((user) => {
+            console.log("user",user);
             if (user === 'ANONYMOUS_USER') {
                 dispatch({
-                             type: 'ANONYMOUS_USER'
+                             type: 'ANONYMOUS_USER',
+                    currentUser: user
                          });
             } else {
                 dispatch({
@@ -17,6 +19,7 @@ export const findUser = (dispatch) => {
             }
         })
         .catch((error)=>{
+            console.log("error : ", error)
                 dispatch({
                     type: 'ANONYMOUS_USER'
                 });

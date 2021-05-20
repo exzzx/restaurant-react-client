@@ -45,15 +45,22 @@ class UserService {
         return this[_singleton]
     }
 
-    findCurrentUser() {
+    findCurrentUser(givenUser) {
+        console.log("givenUser: ", givenUser);
         let promise = fetch(localURL + currentUserURL,
+
             {
-                credentials: 'include'
+                body:JSON.stringify(givenUser),
+                credentials: 'include',
+                method: 'post',
+                headers: {
+                    'content-type': 'application/json'
+                }
             });
 
         return promise.then(function (value) {
             return value.text().then(function (value2) {
-                //console.log(value2);
+                console.log("value1,2:",value, value2)
                 if (value2 === "") {
                     return 'ANONYMOUS_USER';
                 } else {
@@ -64,6 +71,8 @@ class UserService {
     }
 
     userLogin(user) {
+        console.log(this);
+        sessionStorage.setItem("currentUser", user);
         if (user.userType === 'CUSTOMER_USER') {
             let promise = fetch(localURL + customerLoginURL,
                 {
