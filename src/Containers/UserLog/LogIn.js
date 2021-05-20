@@ -27,7 +27,7 @@ class LogIn extends Component {
             password: this.state.password
         };
         this.userService.userLogin(user).then((response) => {
-            // sessionStorage.setItem("currentUser", JSON.stringify(user));
+            sessionStorage.setItem("currentUser", JSON.stringify(user));
             if (response === null) {
                 alert("Please check your username or password again.");
             } else {
